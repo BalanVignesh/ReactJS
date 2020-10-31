@@ -17,9 +17,11 @@ mongoose.connect(mongodbUrl, {
     useCreateIndex: true
 }).catch(error => console.log(error.reason));
 // connected to mongodb
+const path = require("path");
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "client/build")))
 
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
